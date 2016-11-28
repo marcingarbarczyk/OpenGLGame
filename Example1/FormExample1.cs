@@ -19,6 +19,8 @@ namespace Example1
 
         #region Init game
 
+        bool init = true;
+
         GameObjects.Camera camera = new GameObjects.Camera();
         GameObjects.Player player = new GameObjects.Player();
 
@@ -51,7 +53,12 @@ namespace Example1
             gl.LoadIdentity();
             gl.Enable(OpenGL.DEPTH_TEST);
 
-            BasicGameSettings();
+            if(init)
+            {
+                BasicGameSettings();
+                init = false;
+            }
+            
 
 
             gl.LookAt(camera.eyeX, camera.eyeY, camera.eyeZ, camera.centerX, camera.centerY, camera.centerZ, camera.upX, camera.upY, camera.upZ);
@@ -66,6 +73,7 @@ namespace Example1
             gl.Vertex(0, 200, 0);
             gl.End();
 
+            gl.Translate(player.pozX, 0, player.pozZ);
 			gl.Begin(OpenGL.QUADS);
 			gl.Color(1.0, 1.0, 0.0);
 			gl.Vertex(0.0f, 0, 0.0f);
@@ -95,11 +103,15 @@ namespace Example1
             if(e.KeyCode == Keys.A)
             {
                 player.pozX -= 0.1;
+                camera.centerX -= 0.1;
+                camera.eyeX -= 0.1;
             }
 
             if (e.KeyCode == Keys.D)
             {
-                player.pozY += 0.1;
+                player.pozX += 0.1;
+                camera.centerX += 0.1;
+                camera.eyeX += 0.1;
             }
 
             if (e.KeyCode == Keys.W)
