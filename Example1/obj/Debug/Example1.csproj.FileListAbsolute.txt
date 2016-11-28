@@ -1,0 +1,11 @@
+C:\Documents and Settings\Administrator\Pulpit\SharpGL\Example1\bin\Debug\Example1.exe
+C:\Documents and Settings\Administrator\Pulpit\SharpGL\Example1\bin\Debug\Example1.pdb
+C:\Documents and Settings\Administrator\Pulpit\SharpGL\Example1\bin\Debug\SharpGL.dll
+C:\Documents and Settings\Administrator\Pulpit\SharpGL\Example1\bin\Debug\SharpGL.pdb
+C:\Documents and Settings\Administrator\Pulpit\SharpGL\Example1\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Administrator\Pulpit\SharpGL\Example1\obj\Debug\Example1.FormExample1.resources
+C:\Documents and Settings\Administrator\Pulpit\SharpGL\Example1\obj\Debug\Example1.Properties.Resources.resources
+C:\Documents and Settings\Administrator\Pulpit\SharpGL\Example1\obj\Debug\GenerateResource-ResGen.read.1.tlog
+C:\Documents and Settings\Administrator\Pulpit\SharpGL\Example1\obj\Debug\GenerateResource-ResGen.write.1.tlog
+C:\Documents and Settings\Administrator\Pulpit\SharpGL\Example1\obj\Debug\Example1.exe
+C:\Documents and Settings\Administrator\Pulpit\SharpGL\Example1\obj\Debug\Example1.pdb

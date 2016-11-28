@@ -1,0 +1,38 @@
+C:\Documents and Settings\Administrator\Pulpit\SharpGL\Example1\bin\Debug\Example1.exe
+C:\Documents and Settings\Administrator\Pulpit\SharpGL\Example1\bin\Debug\Example1.pdb
+C:\Documents and Settings\Administrator\Pulpit\SharpGL\Example1\bin\Debug\SharpGL.dll
+C:\Documents and Settings\Administrator\Pulpit\SharpGL\Example1\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Administrator\Pulpit\SharpGL\Example1\obj\Debug\Example1.FormExample1.resources
+C:\Documents and Settings\Administrator\Pulpit\SharpGL\Example1\obj\Debug\Example1.Properties.Resources.resources
+C:\Documents and Settings\Administrator\Pulpit\SharpGL\Example1\obj\Debug\GenerateResource-ResGen.read.1.tlog
+C:\Documents and Settings\Administrator\Pulpit\SharpGL\Example1\obj\Debug\GenerateResource-ResGen.write.1.tlog
+C:\Documents and Settings\Administrator\Pulpit\SharpGL\Example1\obj\Debug\Example1.exe
+C:\Documents and Settings\Administrator\Pulpit\SharpGL\Example1\obj\Debug\Example1.pdb
+E:\Udostępnione\SharpGL - szkielet aplikacji\Example1\obj\Debug\Example1.exe
+E:\Udostępnione\SharpGL - szkielet aplikacji\Example1\obj\Debug\Example1.pdb
+E:\Udostępnione\SharpGL - szkielet aplikacji\Example1\bin\Debug\Example1.exe
+E:\Udostępnione\SharpGL - szkielet aplikacji\Example1\bin\Debug\Example1.pdb
+E:\Udostępnione\SharpGL - szkielet aplikacji\Example1\bin\Debug\SharpGL.dll
+E:\Udostępnione\SharpGL - szkielet aplikacji\Example1\obj\Debug\Example1.FormExample1.resources
+E:\Udostępnione\SharpGL - szkielet aplikacji\Example1\obj\Debug\Example1.Properties.Resources.resources
+E:\Udostępnione\SharpGL - szkielet aplikacji\Example1\obj\Debug\SharpGLExample.csproj.GenerateResource.Cache
+D:\Udostępnione\SharpGL - szkielet aplikacji\Example1\bin\Debug\Example1.exe.config
+D:\Udostępnione\SharpGL - szkielet aplikacji\Example1\obj\Debug\Example1.exe
+D:\Udostępnione\SharpGL - szkielet aplikacji\Example1\obj\Debug\Example1.pdb
+D:\Udostępnione\SharpGL - szkielet aplikacji\Example1\bin\Debug\Example1.exe
+D:\Udostępnione\SharpGL - szkielet aplikacji\Example1\bin\Debug\Example1.pdb
+D:\Udostępnione\SharpGL - szkielet aplikacji\Example1\bin\Debug\SharpGL.dll
+D:\Udostępnione\SharpGL - szkielet aplikacji\Example1\obj\Debug\SharpGLExample.csprojResolveAssemblyReference.cache
+D:\Udostępnione\SharpGL - szkielet aplikacji\Example1\obj\Debug\Example1.FormExample1.resources
+D:\Udostępnione\SharpGL - szkielet aplikacji\Example1\obj\Debug\Example1.Properties.Resources.resources
+D:\Udostępnione\SharpGL - szkielet aplikacji\Example1\obj\Debug\SharpGLExample.csproj.GenerateResource.Cache
+F:\Studia\Projekty\Programowanie Aplikacji Graficznych\ProjektGry\Example1\bin\Debug\Example1.exe.config
+F:\Studia\Projekty\Programowanie Aplikacji Graficznych\ProjektGry\Example1\obj\Debug\Example1.exe
+F:\Studia\Projekty\Programowanie Aplikacji Graficznych\ProjektGry\Example1\obj\Debug\Example1.pdb
+F:\Studia\Projekty\Programowanie Aplikacji Graficznych\ProjektGry\Example1\bin\Debug\Example1.exe
+F:\Studia\Projekty\Programowanie Aplikacji Graficznych\ProjektGry\Example1\bin\Debug\Example1.pdb
+F:\Studia\Projekty\Programowanie Aplikacji Graficznych\ProjektGry\Example1\bin\Debug\SharpGL.dll
+F:\Studia\Projekty\Programowanie Aplikacji Graficznych\ProjektGry\Example1\obj\Debug\SharpGLExample.csprojResolveAssemblyReference.cache
+F:\Studia\Projekty\Programowanie Aplikacji Graficznych\ProjektGry\Example1\obj\Debug\Example1.FormExample1.resources
+F:\Studia\Projekty\Programowanie Aplikacji Graficznych\ProjektGry\Example1\obj\Debug\Example1.Properties.Resources.resources
+F:\Studia\Projekty\Programowanie Aplikacji Graficznych\ProjektGry\Example1\obj\Debug\SharpGLExample.csproj.GenerateResource.Cache
