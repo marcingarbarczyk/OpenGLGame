@@ -36,3 +36,13 @@ F:\Studia\Projekty\Programowanie Aplikacji Graficznych\ProjektGry\Example1\obj\D
 F:\Studia\Projekty\Programowanie Aplikacji Graficznych\ProjektGry\Example1\obj\Debug\Example1.FormExample1.resources
 F:\Studia\Projekty\Programowanie Aplikacji Graficznych\ProjektGry\Example1\obj\Debug\Example1.Properties.Resources.resources
 F:\Studia\Projekty\Programowanie Aplikacji Graficznych\ProjektGry\Example1\obj\Debug\SharpGLExample.csproj.GenerateResource.Cache
+C:\Users\mg\Desktop\git\OpenGLGame\Example1\bin\Debug\Example1.exe.config
+C:\Users\mg\Desktop\git\OpenGLGame\Example1\obj\Debug\Example1.exe
+C:\Users\mg\Desktop\git\OpenGLGame\Example1\obj\Debug\Example1.pdb
+C:\Users\mg\Desktop\git\OpenGLGame\Example1\obj\Debug\SharpGLExample.csprojResolveAssemblyReference.cache
+C:\Users\mg\Desktop\git\OpenGLGame\Example1\obj\Debug\Example1.FormExample1.resources
+C:\Users\mg\Desktop\git\OpenGLGame\Example1\obj\Debug\Example1.Properties.Resources.resources
+C:\Users\mg\Desktop\git\OpenGLGame\Example1\obj\Debug\SharpGLExample.csproj.GenerateResource.Cache
+C:\Users\mg\Desktop\git\OpenGLGame\Example1\bin\Debug\Example1.exe
+C:\Users\mg\Desktop\git\OpenGLGame\Example1\bin\Debug\Example1.pdb
+C:\Users\mg\Desktop\git\OpenGLGame\Example1\bin\Debug\SharpGL.dll

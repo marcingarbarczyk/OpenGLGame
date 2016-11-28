@@ -70,6 +70,8 @@
       <DependentUpon>FormExample1.cs</DependentUpon>
     </Compile>
     <Compile Include="GameObjects\Camera.cs" />
+    <Compile Include="GameObjects\Game.cs" />
+    <Compile Include="GameObjects\Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormExample1.resx">

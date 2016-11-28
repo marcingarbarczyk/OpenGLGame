@@ -17,35 +17,41 @@ namespace Example1
             InitializeComponent();
         }
 
-        double x = -4, y = 4, z = -10;
+        #region Init game
 
         GameObjects.Camera camera = new GameObjects.Camera();
+        GameObjects.Player player = new GameObjects.Player();
 
-        private void PodstawoweUstawieniaGry()
+        private void BasicGameSettings()
         {
+            // Camera settings
             camera.eyeX = 2;
             camera.eyeY = 3;
             camera.eyeZ = 5;
-
             camera.centerX = 0;
             camera.centerY = 0;
             camera.centerZ = 0;
-
             camera.upX = 0;
             camera.upY = 1;
             camera.upZ = 0;
+
+            // Player settings
+            player.pozX = 0;
+            player.pozY = 0;
+            player.pozZ = 0;
         }
+
+        #endregion
 
 
         private void openGLControl1_OpenGLDraw(object sender, PaintEventArgs e)
         {
-            // Podstawowe ustawienia gry i OpenGL
             SharpGL.OpenGL gl = this.openGLControl1.OpenGL;
             gl.Clear(OpenGL.COLOR_BUFFER_BIT | OpenGL.DEPTH_BUFFER_BIT);
             gl.LoadIdentity();
             gl.Enable(OpenGL.DEPTH_TEST);
 
-            PodstawoweUstawieniaGry();
+            BasicGameSettings();
 
 
             gl.LookAt(camera.eyeX, camera.eyeY, camera.eyeZ, camera.centerX, camera.centerY, camera.centerZ, camera.upX, camera.upY, camera.upZ);
@@ -82,26 +88,28 @@ namespace Example1
 
 		}
 
+
+        #region Keyboard evenets
         private void openGLControl1_KeyDown(object sender, KeyEventArgs e)
         {
             if(e.KeyCode == Keys.A)
             {
-                x -= 0.1;
+                player.pozX -= 0.1;
             }
 
             if (e.KeyCode == Keys.D)
             {
-                x += 0.1;
+                player.pozY += 0.1;
             }
 
             if (e.KeyCode == Keys.W)
             {
-                z += 0.1;
+
             }
 
             if (e.KeyCode == Keys.S)
             {
-                z -= 0.1;
+
             }
         }
 
@@ -109,5 +117,6 @@ namespace Example1
         {
 
         }
+        #endregion
     }
 }
