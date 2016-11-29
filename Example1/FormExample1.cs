@@ -29,7 +29,7 @@ namespace Example1
             // Camera settings
             camera.eyeX = 2;
             camera.eyeY = 3;
-            camera.eyeZ = 5;
+            camera.eyeZ = 8;
             camera.centerX = 0;
             camera.centerY = 0;
             camera.centerZ = 0;
@@ -41,9 +41,46 @@ namespace Example1
             player.pozX = 0;
             player.pozY = 0;
             player.pozZ = 0;
+            player.sizeX = 1;
+            player.sizeY = 1;
+            player.sizeZ = 1;
         }
 
         #endregion
+
+        private void PlayerDraw(OpenGL gl)
+        {
+            gl.Translate(player.pozX, 0, player.pozZ);
+            gl.Begin(OpenGL.QUADS);
+            gl.Color(1.0, 1.0, 0.0);
+            gl.Vertex(0, 0, 0);
+            gl.Vertex(player.sizeX, 0, 0);
+            gl.Vertex(player.sizeX, 0, player.sizeZ);
+            gl.Vertex(0, 0, player.sizeZ);
+
+            gl.Vertex(0, player.sizeY, 0);
+            gl.Vertex(player.sizeX, player.sizeY, 0);
+            gl.Vertex(player.sizeX, player.sizeY, player.sizeZ);
+            gl.Vertex(0, player.sizeY, player.sizeZ);
+
+            gl.Vertex(0, 0, 0);
+            gl.Vertex(0, 0, player.sizeZ);
+            gl.Vertex(0, 1, player.sizeZ);
+            gl.Vertex(0, player.sizeY, 0);
+
+            gl.Vertex(player.sizeX, 0, 0);
+            gl.Vertex(player.sizeX, 0, player.sizeZ);
+            gl.Vertex(player.sizeX, player.sizeY, player.sizeZ);
+            gl.Vertex(player.sizeX, player.sizeY, 0);
+
+            gl.Vertex(0, 0, player.sizeZ);
+            gl.Vertex(player.sizeX, 0, player.sizeZ);
+            gl.Vertex(player.sizeX, 1, player.sizeZ);
+            gl.Vertex(0, 1, player.sizeZ);
+
+
+            gl.End();
+        }
 
 
         private void openGLControl1_OpenGLDraw(object sender, PaintEventArgs e)
@@ -66,21 +103,26 @@ namespace Example1
             gl.Begin(OpenGL.LINES);
             gl.Color(1.0, 0, 0);
             gl.Vertex(0, 0, 0);
-            gl.Vertex(0, 0, 200);
+            gl.Vertex(0, 0, 500);
             gl.Vertex(0, 0, 0);
-            gl.Vertex(200, 0, 0);
+            gl.Vertex(500, 0, 0);
             gl.Vertex(0, 0, 0);
-            gl.Vertex(0, 200, 0);
+            gl.Vertex(0,500, 0);
             gl.End();
 
-            gl.Translate(player.pozX, 0, player.pozZ);
-			gl.Begin(OpenGL.QUADS);
-			gl.Color(1.0, 1.0, 0.0);
-			gl.Vertex(0.0f, 0, 0.0f);
-			gl.Vertex(5.0f, 0, 0f);
-			gl.Vertex(5.0f, 0, 5.0f);
-            gl.Vertex(0.0f, 0, 5.0f);
+            PlayerDraw(gl);
+
+            gl.Translate(0, 0, 0);
+            gl.Begin(OpenGL.QUADS);
+            gl.Color(0.0, 0.0, 1.0);
+            gl.Vertex(0, 0, 0);
+            gl.Vertex(5, 0, 0);
+            gl.Vertex(5, 0, 5);
+            gl.Vertex(0, 0, 5);
+
             gl.End();
+
+
         }
 
 

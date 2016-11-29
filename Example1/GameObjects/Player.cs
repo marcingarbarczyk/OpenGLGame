@@ -10,5 +10,8 @@ namespace Example1.GameObjects
         public double pozX { get; set; }
         public double pozY { get; set; }
         public double pozZ { get; set; }
+        public double sizeX { get; set; }
+        public double sizeY { get; set; }
+        public double sizeZ { get; set; }
     }
 }
