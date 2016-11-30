@@ -20,6 +20,8 @@ namespace Example1
         #region Init game
 
         bool init = true;
+        bool left, right, space = false;
+        List<GameObjects.Element> colliders = new List<GameObjects.Element>();
 
         GameObjects.Camera camera = new GameObjects.Camera();
         GameObjects.Player player = new GameObjects.Player();
@@ -38,19 +40,141 @@ namespace Example1
             camera.upZ = 0;
 
             // Player settings
-            player.pozX = 0;
-            player.pozY = 0;
-            player.pozZ = 0;
             player.sizeX = 1;
             player.sizeY = 1;
             player.sizeZ = 1;
+            player.colliderX = false;
+            player.colliderY = false;
+            player.colliderZ = false;
+            player.gravity = -500;
+            player.jumpHeight = 2;
+            player.speedX = 0.1;
+            player.isJumping = false;
+
+            // Element settings
+            colliders.Add(new GameObjects.Element
+            {
+                isCollider = true,
+                coords = new double[,] {
+                    {0, 0, 0 },
+                    {1, 0, 0 },
+                    {1, 0, 1 },
+                    {0, 0, 1 }
+                }
+            });
+
+            colliders.Add(new GameObjects.Element
+            {
+                isCollider = true,
+                coords = new double[,] {
+                    {2, 0, 0 },
+                    {4, 0, 0 },
+                    {4, 0, 1 },
+                    {2, 0, 1 }
+                }
+            });
+
+            colliders.Add(new GameObjects.Element
+            {
+                isCollider = true,
+                coords = new double[,] {
+                    {6, 1, 0 },
+                    {4, 1, 0 },
+                    {4, 1, 1 },
+                    {6, 1, 1 }
+                }
+            });
         }
 
         #endregion
 
+        private void MovePlayer(OpenGL gl)
+        {
+            if (left)
+            {
+                camera.centerX -= player.speedX;
+                camera.eyeX -= player.speedX;
+                player.moveX -= player.speedX;
+
+            }
+            if (right)
+            {
+                camera.centerX += player.speedX;
+                camera.eyeX += player.speedX;
+                player.moveX += player.speedX;
+            }
+            if (player.isJumping)
+            {
+                if (player.moveY >= player.jumpPoint)
+                {
+                    player.isJumping = false;
+                    return;
+                }
+                player.moveY += 0.5;
+            }
+            if (!player.colliderY && !player.isJumping)
+            {
+                player.moveY -= 0.1;
+            }
+        }
+
+        private void CheckCollider(OpenGL gl, GameObjects.Player player, List<GameObjects.Element> colliders)
+        {
+            for (int i = 0; i < colliders.Count; i++) {
+                if (colliders[i].isCollider)
+                {
+                    double maxX = colliders[i].coords[0, 0], minX = colliders[i].coords[0, 0];
+                    for (int j = 0; j <= colliders[i].coords.GetLength(1); j++)
+                    {
+                        if (maxX < colliders[i].coords[j, 0])
+                            maxX = colliders[i].coords[j, 0];
+                        if (minX > colliders[i].coords[j, 0])
+                            minX = colliders[i].coords[j, 0];
+                    }
+
+                    if (player.moveX >= minX && player.moveX <= maxX && (float)player.moveY <= (float)colliders[i].coords[0, 1])
+                    {
+                        player.colliderY = true;
+                        label3.Text = "Kolizja - " + i;
+                        break;
+                    }
+                    player.colliderY = false;
+                    
+                }
+            }
+        }
+
+
+        private void Draw(OpenGL gl, List<GameObjects.Element> colliders)
+        {
+            gl.Color(1.0, 1.0, 1.0);
+            for (int j = 0; j < colliders.Count; j++)
+            {
+                gl.Begin(OpenGL.QUADS);
+                for (int i = 0; i <= colliders[j].coords.GetLength(1); i++)
+                {
+                    gl.Vertex(colliders[j].coords[i, 0], colliders[j].coords[i, 1], colliders[j].coords[i, 2]);
+                }
+                gl.End();
+            }
+        }
+
+        private void DrawHelpfulLines(OpenGL gl)
+        {
+            gl.Begin(OpenGL.LINES);
+            gl.Color(1.0, 0, 0);
+            gl.Vertex(0, 0, 0);
+            gl.Vertex(0, 0, 500);
+            gl.Vertex(0, 0, 0);
+            gl.Vertex(500, 0, 0);
+            gl.Vertex(0, -500, 0);
+            gl.Vertex(0, 500, 0);
+            gl.End();
+        }
+
         private void PlayerDraw(OpenGL gl)
         {
-            gl.Translate(player.pozX, 0, player.pozZ);
+            gl.Translate(player.moveX, player.moveY, player.moveZ);
             gl.Begin(OpenGL.QUADS);
             gl.Color(1.0, 1.0, 0.0);
             gl.Vertex(0, 0, 0);
@@ -95,80 +219,54 @@ namespace Example1
                 BasicGameSettings();
                 init = false;
             }
+
+            player.zX = player.moveX;
+            player.zY = player.moveY;
+            player.zZ = player.moveZ;
+
+
+            CheckCollider(gl, player, colliders);
+            MovePlayer(gl);
             
 
+            
 
             gl.LookAt(camera.eyeX, camera.eyeY, camera.eyeZ, camera.centerX, camera.centerY, camera.centerZ, camera.upX, camera.upY, camera.upZ);
-
-            gl.Begin(OpenGL.LINES);
-            gl.Color(1.0, 0, 0);
-            gl.Vertex(0, 0, 0);
-            gl.Vertex(0, 0, 500);
-            gl.Vertex(0, 0, 0);
-            gl.Vertex(500, 0, 0);
-            gl.Vertex(0, 0, 0);
-            gl.Vertex(0,500, 0);
-            gl.End();
-
+            DrawHelpfulLines(gl);
+            gl.PushMatrix();
             PlayerDraw(gl);
-
-            gl.Translate(0, 0, 0);
-            gl.Begin(OpenGL.QUADS);
-            gl.Color(0.0, 0.0, 1.0);
-            gl.Vertex(0, 0, 0);
-            gl.Vertex(5, 0, 0);
-            gl.Vertex(5, 0, 5);
-            gl.Vertex(0, 0, 5);
-
-            gl.End();
-
-
+            gl.PopMatrix();
+            Draw(gl, colliders);
+            label1.Text = player.moveX + " ";
         }
-
-
-      
-
-        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            System.Diagnostics.Process.Start("http://www.dopecode.co.uk/buymeabeer");
-        }
-
-		private void openGLControl1_Load(object sender, EventArgs e)
-		{
-
-		}
-
 
         #region Keyboard evenets
         private void openGLControl1_KeyDown(object sender, KeyEventArgs e)
         {
             if(e.KeyCode == Keys.A)
-            {
-                player.pozX -= 0.1;
-                camera.centerX -= 0.1;
-                camera.eyeX -= 0.1;
-            }
+                left = true;
 
             if (e.KeyCode == Keys.D)
+                right = true;
+
+            if (e.KeyCode == Keys.Space)
             {
-                player.pozX += 0.1;
-                camera.centerX += 0.1;
-                camera.eyeX += 0.1;
+                player.isJumping = true;
+                player.jumpPoint = player.moveY + player.jumpHeight;
             }
-
-            if (e.KeyCode == Keys.W)
-            {
-
-            }
-
-            if (e.KeyCode == Keys.S)
-            {
-
-            }
+                    
         }
 
         private void openGLControl1_KeyUp(object sender, KeyEventArgs e)
         {
+            if (e.KeyCode == Keys.A)
+                left = false;
+
+            if (e.KeyCode == Keys.D)
+                right = false;
+
+            //if (e.KeyCode == Keys.Space)
+                //space = false;
 
         }
         #endregion

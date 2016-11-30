@@ -18,6 +18,5 @@ namespace Example1.GameObjects
         public double upX { get; set; }
         public double upY { get; set; }
         public double upZ { get; set; }
-
     }
 }
