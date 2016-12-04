@@ -44,6 +44,7 @@ namespace Example1
             this.openGLControl1.Size = new System.Drawing.Size(500, 500);
             this.openGLControl1.TabIndex = 0;
             this.openGLControl1.OpenGLDraw += new System.Windows.Forms.PaintEventHandler(this.openGLControl1_OpenGLDraw);
+            this.openGLControl1.Load += new System.EventHandler(this.openGLControl1_Load);
             this.openGLControl1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.openGLControl1_KeyDown);
             this.openGLControl1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.openGLControl1_KeyUp);
             // 

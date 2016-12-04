@@ -23,11 +23,15 @@ namespace Example1
         bool left, right, space = false;
         List<GameObjects.Element> colliders = new List<GameObjects.Element>();
 
+        GameObjects.Game game = new GameObjects.Game();
         GameObjects.Camera camera = new GameObjects.Camera();
         GameObjects.Player player = new GameObjects.Player();
 
         private void BasicGameSettings()
         {
+            // Main game settings
+            game.ctrl = this.openGLControl1;
+
             // Camera settings
             camera.eyeX = 2;
             camera.eyeY = 3;
@@ -43,9 +47,6 @@ namespace Example1
             player.sizeX = 1;
             player.sizeY = 1;
             player.sizeZ = 1;
-            player.colliderX = false;
-            player.colliderY = false;
-            player.colliderZ = false;
             player.gravity = -500;
             player.jumpHeight = 2;
             player.speedX = 0.1;
@@ -217,6 +218,7 @@ namespace Example1
             if(init)
             {
                 BasicGameSettings();
+                game.LoadModel();
                 init = false;
             }
 
@@ -233,11 +235,17 @@ namespace Example1
 
             gl.LookAt(camera.eyeX, camera.eyeY, camera.eyeZ, camera.centerX, camera.centerY, camera.centerZ, camera.upX, camera.upY, camera.upZ);
             DrawHelpfulLines(gl);
+            game.DisplayModel(gl);
             gl.PushMatrix();
             PlayerDraw(gl);
             gl.PopMatrix();
             Draw(gl, colliders);
             label1.Text = player.moveX + " ";
+        }
+
+        private void openGLControl1_Load(object sender, EventArgs e)
+        {
+
         }
 
         #region Keyboard evenets
