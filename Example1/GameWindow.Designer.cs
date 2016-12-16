@@ -1,6 +1,6 @@
 namespace Example1
 {
-    partial class FormExample1
+    partial class GameWindow
     {
         /// <summary>
         /// Required designer variable.
@@ -41,17 +41,16 @@ namespace Example1
             this.openGLControl1.GDIEnabled = false;
             this.openGLControl1.Location = new System.Drawing.Point(2, -1);
             this.openGLControl1.Name = "openGLControl1";
-            this.openGLControl1.Size = new System.Drawing.Size(500, 500);
+            this.openGLControl1.Size = new System.Drawing.Size(1010, 566);
             this.openGLControl1.TabIndex = 0;
             this.openGLControl1.OpenGLDraw += new System.Windows.Forms.PaintEventHandler(this.openGLControl1_OpenGLDraw);
-            this.openGLControl1.Load += new System.EventHandler(this.openGLControl1_Load);
             this.openGLControl1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.openGLControl1_KeyDown);
             this.openGLControl1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.openGLControl1_KeyUp);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(148, 461);
+            this.label1.Location = new System.Drawing.Point(705, 475);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 1;
@@ -60,7 +59,7 @@ namespace Example1
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(296, 461);
+            this.label2.Location = new System.Drawing.Point(831, 475);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(35, 13);
             this.label2.TabIndex = 2;
@@ -69,26 +68,29 @@ namespace Example1
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(357, 33);
+            this.label3.Location = new System.Drawing.Point(27, 24);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(35, 13);
             this.label3.TabIndex = 3;
             this.label3.Text = "label3";
             // 
-            // FormExample1
+            // GameWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(504, 501);
+            this.ClientSize = new System.Drawing.Size(1008, 561);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.openGLControl1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(520, 540);
+            this.MaximumSize = new System.Drawing.Size(1024, 600);
             this.MinimumSize = new System.Drawing.Size(520, 540);
-            this.Name = "FormExample1";
+            this.Name = "GameWindow";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Example 1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Game_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

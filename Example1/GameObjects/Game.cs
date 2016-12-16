@@ -12,8 +12,26 @@ namespace Example1.GameObjects
 {
     class Game
     {
-        public OpenGLCtrl ctrl { get; set; }
-        uint[] tex = new uint[255]; // zmienna przechowujaca textury
+        public OpenGLCtrl ctrl { get; set; } // opengl context
+        public float epsilon { get; set; } // for comparing the distance of collision
+        public uint[] tex = new uint[255]; // array with textures
+        public int life = 3;
+        public float[,] checkpoint;
+
+
+
+        public void DrawHelpfulLines(OpenGL gl)
+        {
+            gl.Begin(OpenGL.LINES);
+            gl.Color(1.0, 0, 0);
+            gl.Vertex(0, 0, 0);
+            gl.Vertex(0, 0, 500);
+            gl.Vertex(0, 0, 0);
+            gl.Vertex(500, 0, 0);
+            gl.Vertex(0, -500, 0);
+            gl.Vertex(0, 500, 0);
+            gl.End();
+        }
 
         public void LoadTexture(string fn, int numer)
         {
@@ -143,6 +161,51 @@ namespace Example1.GameObjects
 
                 gl.End();
             }
+        }
+
+        public void Draw(OpenGL gl, List<GameObjects.Block> blocks)
+        {
+            gl.Color(1.0, 1.0, 1.0);
+            gl.Enable(OpenGL.TEXTURE_2D);
+            for (int i = 0; i < blocks.Count; i++)
+            {
+                
+                gl.BindTexture(OpenGL.TEXTURE_2D, blocks[i].textureID);
+                gl.Begin(OpenGL.QUADS);
+
+                // Top block
+                gl.TexCoord(0, 0); gl.Vertex(blocks[i].collider.topViewCoords[0, 0], blocks[i].collider.topViewCoords[0, 1], blocks[i].collider.topViewCoords[0, 2]);
+                gl.TexCoord(1, 0); gl.Vertex(blocks[i].collider.topViewCoords[1, 0], blocks[i].collider.topViewCoords[1, 1], blocks[i].collider.topViewCoords[1, 2]);
+                gl.TexCoord(1, 1); gl.Vertex(blocks[i].collider.topViewCoords[2, 0], blocks[i].collider.topViewCoords[2, 1], blocks[i].collider.topViewCoords[2, 2]);
+                gl.TexCoord(0, 1); gl.Vertex(blocks[i].collider.topViewCoords[3, 0], blocks[i].collider.topViewCoords[3, 1], blocks[i].collider.topViewCoords[3, 2]);
+
+                // Bottom block
+                gl.TexCoord(0, 0); gl.Vertex(blocks[i].collider.bottomViewCoords[0, 0], blocks[i].collider.bottomViewCoords[0, 1], blocks[i].collider.bottomViewCoords[0, 2]);
+                gl.TexCoord(1, 0); gl.Vertex(blocks[i].collider.bottomViewCoords[1, 0], blocks[i].collider.bottomViewCoords[1, 1], blocks[i].collider.bottomViewCoords[1, 2]);
+                gl.TexCoord(1, 1); gl.Vertex(blocks[i].collider.bottomViewCoords[2, 0], blocks[i].collider.bottomViewCoords[2, 1], blocks[i].collider.bottomViewCoords[2, 2]);
+                gl.TexCoord(0, 1); gl.Vertex(blocks[i].collider.bottomViewCoords[3, 0], blocks[i].collider.bottomViewCoords[3, 1], blocks[i].collider.bottomViewCoords[3, 2]);
+
+                // Left block
+                gl.TexCoord(0, 0); gl.Vertex(blocks[i].collider.leftViewCoords[0, 0], blocks[i].collider.leftViewCoords[0, 1], blocks[i].collider.leftViewCoords[0, 2]);
+                gl.TexCoord(1, 0); gl.Vertex(blocks[i].collider.leftViewCoords[1, 0], blocks[i].collider.leftViewCoords[1, 1], blocks[i].collider.leftViewCoords[1, 2]);
+                gl.TexCoord(1, 1); gl.Vertex(blocks[i].collider.leftViewCoords[2, 0], blocks[i].collider.leftViewCoords[2, 1], blocks[i].collider.leftViewCoords[2, 2]);
+                gl.TexCoord(0, 1); gl.Vertex(blocks[i].collider.leftViewCoords[3, 0], blocks[i].collider.leftViewCoords[3, 1], blocks[i].collider.leftViewCoords[3, 2]);
+
+                // Right block
+                gl.TexCoord(0, 0); gl.Vertex(blocks[i].collider.rightViewCoords[0, 0], blocks[i].collider.rightViewCoords[0, 1], blocks[i].collider.rightViewCoords[0, 2]);
+                gl.TexCoord(1, 0); gl.Vertex(blocks[i].collider.rightViewCoords[1, 0], blocks[i].collider.rightViewCoords[1, 1], blocks[i].collider.rightViewCoords[1, 2]);
+                gl.TexCoord(1, 1); gl.Vertex(blocks[i].collider.rightViewCoords[2, 0], blocks[i].collider.rightViewCoords[2, 1], blocks[i].collider.rightViewCoords[2, 2]);
+                gl.TexCoord(0, 1); gl.Vertex(blocks[i].collider.rightViewCoords[3, 0], blocks[i].collider.rightViewCoords[3, 1], blocks[i].collider.rightViewCoords[3, 2]);
+
+                // Front block
+                gl.TexCoord(0, 0); gl.Vertex(blocks[i].collider.frontViewCoords[0, 0], blocks[i].collider.frontViewCoords[0, 1], blocks[i].collider.frontViewCoords[0, 2]);
+                gl.TexCoord(1, 0); gl.Vertex(blocks[i].collider.frontViewCoords[1, 0], blocks[i].collider.frontViewCoords[1, 1], blocks[i].collider.frontViewCoords[1, 2]);
+                gl.TexCoord(1, 1); gl.Vertex(blocks[i].collider.frontViewCoords[2, 0], blocks[i].collider.frontViewCoords[2, 1], blocks[i].collider.bottomViewCoords[2, 2]);
+                gl.TexCoord(0, 1); gl.Vertex(blocks[i].collider.frontViewCoords[3, 0], blocks[i].collider.frontViewCoords[3, 1], blocks[i].collider.frontViewCoords[3, 2]);
+
+                gl.End();
+            }
+            gl.Disable(OpenGL.TEXTURE_2D);
         }
     }
 }

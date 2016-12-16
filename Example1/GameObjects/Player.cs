@@ -7,34 +7,34 @@ namespace Example1.GameObjects
 {
     class Player
     {
-        public double zX { get; set; }
-        public double zY { get; set; }
-        public double zZ { get; set; }
+        public float x { get; set; }
+        public float y { get; set; }
+        public float z { get; set; }
 
-        public double moveX { get; set; }
-        public double moveY { get; set; }
-        public double moveZ { get; set; }
+        public float sizeX { get; set; }
+        public float sizeY { get; set; }
+        public float sizeZ { get; set; }
 
-        public double pozX { get; set; }
-        public double pozY { get; set; }
-        public double pozZ { get; set; }
-
-        public double sizeX { get; set; }
-        public double sizeY { get; set; }
-        public double sizeZ { get; set; }
-
-        public bool colliderX { get; set; }
-        public bool colliderY { get; set; }
+        public bool colliderXleft { get; set; }
+        public bool colliderXright { get; set; }
+        public bool colliderYbottom { get; set; }
+        public bool colliderYtop { get; set; }
         public bool colliderZ { get; set; }
 
-        public double gravity { get; set; }
-        public double jumpHeight { get; set; }
-        public double jumpPoint { get; set; }
-        public bool isJumping { get; set; }
+        public float speed { get; set; }
+        public float weight { get; set; }
 
+        public bool isJumping { get; set; }
+        public float jumpingLimit { get; set; }
+        public float jumpMax { get; set; }
+
+
+
+
+        // not used still
         public bool directionLeft { get; set; }
         public bool directionRight { get; set; }
 
-        public double speedX { get; set; }
+        
     }
 }

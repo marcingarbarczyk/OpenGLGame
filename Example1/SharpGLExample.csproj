@@ -50,6 +50,10 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="SharpGL, Version=1.0.4677.26924, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -63,13 +67,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormExample1.cs">
+    <Compile Include="GameWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormExample1.Designer.cs">
-      <DependentUpon>FormExample1.cs</DependentUpon>
+    <Compile Include="GameWindow.Designer.cs">
+      <DependentUpon>GameWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="GameObjects\Block.cs" />
     <Compile Include="GameObjects\Camera.cs" />
+    <Compile Include="GameObjects\Collider.cs" />
     <Compile Include="GameObjects\Element.cs" />
     <Compile Include="GameObjects\Game.cs" />
     <Compile Include="GameObjects\Model\Vertex.cs" />
@@ -77,11 +83,20 @@
     <Compile Include="GameObjects\Model\XYZ.cs" />
     <Compile Include="GameObjects\Object.cs" />
     <Compile Include="GameObjects\Player.cs" />
+    <Compile Include="Menu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menu.Designer.cs">
+      <DependentUpon>Menu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FormExample1.resx">
+    <EmbeddedResource Include="GameWindow.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>FormExample1.cs</DependentUpon>
+      <DependentUpon>GameWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menu.resx">
+      <DependentUpon>Menu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
