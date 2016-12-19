@@ -58,21 +58,18 @@ namespace Example1.GameObjects
             gl.TexParameter(OpenGL.TEXTURE_2D, OpenGL.TEXTURE_MAG_FILTER, OpenGL.LINEAR);
         }
 
-        List<Model.XYZ> lista_xyz = new List<Model.XYZ>();
-        List<Model.UV> lista_uv = new List<Model.UV>();
-        List<Model.XYZ> lista_norm = new List<Model.XYZ>();
-        List<List<Model.Vertex>> lista_f = new List<List<Model.Vertex>>();
-
-        public void LoadModel()
+        public Model LoadModel(string src)
         {
+            Model model = new GameObjects.Model();
             string plik1 = "";
+
             try
             {
-                plik1 = System.IO.File.ReadAllText("assets/models/key.obj");
+                plik1 = System.IO.File.ReadAllText(src);
             }
             catch (Exception ex)
             {
-                return;
+                return null;
             }
 
             string plik = "";
@@ -96,71 +93,52 @@ namespace Example1.GameObjects
 
                 if (słowa[0] == "v")
                 {
-                    Model.XYZ xyz = new Model.XYZ();
+                    ModelCoords.XYZ xyz = new ModelCoords.XYZ();
                     xyz.X = double.Parse(słowa[1], System.Globalization.NumberStyles.Any);
                     xyz.Y = double.Parse(słowa[2]);
                     xyz.Z = double.Parse(słowa[3]);
-                    lista_xyz.Add(xyz);
+                    model.lista_xyz.Add(xyz);
 
                     x += xyz.X; y += xyz.Y; z += xyz.Z; ile_v++;
                 }
 
                 if (słowa[0] == "vt")
                 {
-                    Model.UV uv = new Model.UV();
+                    ModelCoords.UV uv = new ModelCoords.UV();
                     uv.U = double.Parse(słowa[1]);
                     uv.V = double.Parse(słowa[2]);
 
-                    lista_uv.Add(uv);
+                    model.lista_uv.Add(uv);
                 }
 
                 if (słowa[0] == "vn")
                 {
-                    Model.XYZ xyz = new Model.XYZ();
+                    ModelCoords.XYZ xyz = new ModelCoords.XYZ();
                     xyz.X = double.Parse(słowa[1]);
                     xyz.Y = double.Parse(słowa[2]);
                     xyz.Z = double.Parse(słowa[3]);
-                    lista_norm.Add(xyz);
+                    model.lista_norm.Add(xyz);
                 }
 
                 if (słowa[0] == "f")
                 {
-                    List<Model.Vertex> face = new List<Model.Vertex>();
+                    List<ModelCoords.Vertex> face = new List<ModelCoords.Vertex>();
                     for (int i = 1; i < słowa.Length; i++)
                     {
 
                         string[] liczba = słowa[i].Split('/');
-                        Model.Vertex v = new Model.Vertex();
+                        ModelCoords.Vertex v = new ModelCoords.Vertex();
                         v.V = int.Parse(liczba[0]);
                         v.VT = int.Parse(liczba[1]);
                         v.VN = int.Parse(liczba[2]);
                         face.Add(v);
                     }
-                    lista_f.Add(face);
+                    model.lista_f.Add(face);
                 }
 
             }
-        }
 
-        public void DisplayModel(SharpGL.OpenGL gl)
-        {
-            foreach (List<Model.Vertex> face in lista_f)
-            {
-                if (face.Count == 3)
-                    gl.Begin(OpenGL.TRIANGLES);
-                if (face.Count == 4)
-                    gl.Begin(OpenGL.QUADS);
-                gl.Begin(OpenGL.LINE_LOOP);
-
-                foreach (Model.Vertex v in face)
-                {
-                    lista_norm[v.VN - 1].glNormal(gl);
-                    lista_uv[v.VT - 1].glTexCoord(gl);
-                    lista_xyz[v.V - 1].glVertex(gl);
-                }
-
-                gl.End();
-            }
+            return model;
         }
 
         public void Draw(OpenGL gl, List<GameObjects.Block> blocks)

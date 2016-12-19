@@ -91,6 +91,7 @@ namespace Example1
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Example 1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Game_FormClosing);
+            this.Load += new System.EventHandler(this.GameWindow_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -22,6 +22,7 @@ namespace Example1
         bool init = true;
         bool left, right, space = false;
         List<GameObjects.Block> blocks = new List<GameObjects.Block>();
+        GameObjects.Model[] models = new GameObjects.Model[200];
 
         GameObjects.Game game = new GameObjects.Game();
         GameObjects.Camera camera = new GameObjects.Camera();
@@ -32,6 +33,9 @@ namespace Example1
             // Main game settings
             game.ctrl = this.openGLControl1;
             game.epsilon = 0.01f;
+
+            // Load models
+            models[0] = game.LoadModel("assets/models/key.obj");
 
             // Camera settings
             camera.eyeX = 0;
@@ -54,6 +58,7 @@ namespace Example1
             player.speed = 0.1f;
             player.jumpMax = 1.5f;
             player.weight = 0.5f;
+            player.modelStandard = models[0];
 
 
 
@@ -202,7 +207,7 @@ namespace Example1
                 camera.centerX -= player.speed;
                 camera.eyeX -= player.speed;
                 player.x -= player.speed;
-
+                player.back = true;
             }
 
             if (right && !player.colliderXright)
@@ -210,6 +215,7 @@ namespace Example1
                 camera.centerX += player.speed;
                 camera.eyeX += player.speed;
                 player.x += player.speed;
+                player.back = false;
             }
 
             if (player.isJumping)
@@ -222,7 +228,7 @@ namespace Example1
                 else
                 {
                     if (player.y <= player.jumpingLimit)
-                        player.y += 0.5f;
+                        player.y += 0.1f;
                     else
                         player.isJumping = false;
                 }
@@ -371,38 +377,18 @@ namespace Example1
 
         
 
-        private void PlayerDraw(OpenGL gl)
+        private void DrawPlayer(OpenGL gl)
         {
-            gl.Translate(player.x, player.y, player.z);
-            gl.Begin(OpenGL.QUADS);
-            gl.Color(1.0, 1.0, 0.0);
-            gl.Vertex(0, 0, 0);
-            gl.Vertex(player.sizeX, 0, 0);
-            gl.Vertex(player.sizeX, 0, player.sizeZ);
-            gl.Vertex(0, 0, player.sizeZ);
 
-            gl.Vertex(0, player.sizeY, 0);
-            gl.Vertex(player.sizeX, player.sizeY, 0);
-            gl.Vertex(player.sizeX, player.sizeY, player.sizeZ);
-            gl.Vertex(0, player.sizeY, player.sizeZ);
-
-            gl.Vertex(0, 0, 0);
-            gl.Vertex(0, 0, player.sizeZ);
-            gl.Vertex(0, 1, player.sizeZ);
-            gl.Vertex(0, player.sizeY, 0);
-
-            gl.Vertex(player.sizeX, 0, 0);
-            gl.Vertex(player.sizeX, 0, player.sizeZ);
-            gl.Vertex(player.sizeX, player.sizeY, player.sizeZ);
-            gl.Vertex(player.sizeX, player.sizeY, 0);
-
-            gl.Vertex(0, 0, player.sizeZ);
-            gl.Vertex(player.sizeX, 0, player.sizeZ);
-            gl.Vertex(player.sizeX, 1, player.sizeZ);
-            gl.Vertex(0, 1, player.sizeZ);
-
-
-            gl.End();
+            if (player.back)
+            {
+                gl.Translate(player.x + player.sizeX, player.y, player.z);
+                gl.Rotate(0, 180, 0);
+            }
+            else
+                gl.Translate(player.x, player.y, player.z);
+            player.DisplayModel(gl, player.modelStandard);
+            player.DrawColliders(gl);
         }
 
 
@@ -433,7 +419,7 @@ namespace Example1
             gl.LookAt(camera.eyeX, camera.eyeY, camera.eyeZ, camera.centerX, camera.centerY, camera.centerZ, camera.upX, camera.upY, camera.upZ);
             game.DrawHelpfulLines(gl);
             gl.PushMatrix();
-            PlayerDraw(gl);
+            DrawPlayer(gl);
             gl.PopMatrix();
             game.Draw(gl, blocks);
             label1.Text = player.x + " ";
@@ -442,6 +428,11 @@ namespace Example1
         private void Game_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void GameWindow_Load(object sender, EventArgs e)
+        {
+
         }
 
         #region Keyboard evenets

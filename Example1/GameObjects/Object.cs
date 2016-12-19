@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SharpGL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,8 +8,74 @@ namespace Example1.GameObjects
 {
     class Object
     {
-        public Model.UV uv;
-        public Model.Vertex vertex;
-        public Model.XYZ xyz;        
+        public float x { get; set; }
+        public float y { get; set; }
+        public float z { get; set; }
+
+        public bool back { get; set; }
+
+        public float sizeX { get; set; }
+        public float sizeY { get; set; }
+        public float sizeZ { get; set; }
+
+        public bool colliderXleft { get; set; }
+        public bool colliderXright { get; set; }
+        public bool colliderYbottom { get; set; }
+        public bool colliderYtop { get; set; }
+        public bool colliderZ { get; set; }
+
+        public Model modelStandard { get; set; }
+
+        public void DisplayModel(SharpGL.OpenGL gl, Model model)
+        {
+            foreach (List<ModelCoords.Vertex> face in model.lista_f)
+            {
+                if (face.Count == 3)
+                    gl.Begin(OpenGL.TRIANGLES);
+                if (face.Count == 4)
+                    gl.Begin(OpenGL.QUADS);
+                gl.Begin(OpenGL.LINE_LOOP);
+
+                foreach (ModelCoords.Vertex v in face)
+                {
+                    model.lista_norm[v.VN - 1].glNormal(gl);
+                    model.lista_uv[v.VT - 1].glTexCoord(gl);
+                    model.lista_xyz[v.V - 1].glVertex(gl);
+                }
+
+                gl.End();
+            }
+        }
+
+        public void DrawColliders(OpenGL gl)
+        {
+            gl.Begin(OpenGL.QUADS);
+            gl.Color(1.0, 1.0, 0.0);
+            gl.Vertex(0, 0, 0);
+            gl.Vertex(sizeX, 0, 0);
+            gl.Vertex(sizeX, 0, sizeZ);
+            gl.Vertex(0, 0, sizeZ);
+
+            gl.Vertex(0, sizeY, 0);
+            gl.Vertex(sizeX, sizeY, 0);
+            gl.Vertex(sizeX, sizeY, sizeZ);
+            gl.Vertex(0, sizeY, sizeZ);
+
+            gl.Vertex(0, 0, 0);
+            gl.Vertex(0, 0, sizeZ);
+            gl.Vertex(0, 1, sizeZ);
+            gl.Vertex(0, sizeY, 0);
+
+            gl.Vertex(sizeX, 0, 0);
+            gl.Vertex(sizeX, 0, sizeZ);
+            gl.Vertex(sizeX, sizeY, sizeZ);
+            gl.Vertex(sizeX, sizeY, 0);
+
+            gl.Vertex(0, 0, sizeZ);
+            gl.Vertex(sizeX, 0, sizeZ);
+            gl.Vertex(sizeX, 1, sizeZ);
+            gl.Vertex(0, 1, sizeZ);
+            gl.End();
+        }
     }
 }
