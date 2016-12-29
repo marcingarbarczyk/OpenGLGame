@@ -29,9 +29,9 @@ namespace Example1
         private void InitializeComponent()
         {
             this.openGLControl1 = new SharpGL.OpenGLCtrl();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.playerX = new System.Windows.Forms.Label();
+            this.playerY = new System.Windows.Forms.Label();
+            this.gameMessage = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // openGLControl1
@@ -47,41 +47,41 @@ namespace Example1
             this.openGLControl1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.openGLControl1_KeyDown);
             this.openGLControl1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.openGLControl1_KeyUp);
             // 
-            // label1
+            // playerX
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(705, 475);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "label1";
+            this.playerX.AutoSize = true;
+            this.playerX.Location = new System.Drawing.Point(705, 475);
+            this.playerX.Name = "playerX";
+            this.playerX.Size = new System.Drawing.Size(0, 13);
+            this.playerX.TabIndex = 1;
+            this.playerX.Visible = false;
             // 
-            // label2
+            // playerY
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(831, 475);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "label2";
+            this.playerY.AutoSize = true;
+            this.playerY.Location = new System.Drawing.Point(831, 475);
+            this.playerY.Name = "playerY";
+            this.playerY.Size = new System.Drawing.Size(0, 13);
+            this.playerY.TabIndex = 2;
+            this.playerY.Visible = false;
             // 
-            // label3
+            // gameMessage
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(27, 24);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 13);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "label3";
+            this.gameMessage.AutoSize = true;
+            this.gameMessage.Location = new System.Drawing.Point(27, 24);
+            this.gameMessage.Name = "gameMessage";
+            this.gameMessage.Size = new System.Drawing.Size(0, 13);
+            this.gameMessage.TabIndex = 3;
+            this.gameMessage.Visible = false;
             // 
             // GameWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 561);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.gameMessage);
+            this.Controls.Add(this.playerY);
+            this.Controls.Add(this.playerX);
             this.Controls.Add(this.openGLControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
@@ -100,9 +100,9 @@ namespace Example1
         #endregion
 
 		private SharpGL.OpenGLCtrl openGLControl1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label playerX;
+        private System.Windows.Forms.Label playerY;
+        private System.Windows.Forms.Label gameMessage;
     }
 }
 

@@ -9,5 +9,6 @@ namespace Example1.GameObjects
     {
         public uint textureID { get; set; }
         public Example1.GameObjects.Collider collider { get; set; }
+        public Model model { get; set; }
     }
 }

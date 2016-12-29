@@ -26,27 +26,6 @@ namespace Example1.GameObjects
 
         public Model modelStandard { get; set; }
 
-        public void DisplayModel(SharpGL.OpenGL gl, Model model)
-        {
-            foreach (List<ModelCoords.Vertex> face in model.lista_f)
-            {
-                if (face.Count == 3)
-                    gl.Begin(OpenGL.TRIANGLES);
-                if (face.Count == 4)
-                    gl.Begin(OpenGL.QUADS);
-                gl.Begin(OpenGL.LINE_LOOP);
-
-                foreach (ModelCoords.Vertex v in face)
-                {
-                    model.lista_norm[v.VN - 1].glNormal(gl);
-                    model.lista_uv[v.VT - 1].glTexCoord(gl);
-                    model.lista_xyz[v.V - 1].glVertex(gl);
-                }
-
-                gl.End();
-            }
-        }
-
         public void DrawColliders(OpenGL gl)
         {
             gl.Begin(OpenGL.QUADS);
