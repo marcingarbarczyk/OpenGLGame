@@ -1,0 +1,11 @@
+E:\GIT\OpenGLGame\Example1\bin\Release\Example1.exe.config
+E:\GIT\OpenGLGame\Example1\bin\Release\Example1.exe
+E:\GIT\OpenGLGame\Example1\bin\Release\Example1.pdb
+E:\GIT\OpenGLGame\Example1\bin\Release\SharpGL.dll
+E:\GIT\OpenGLGame\Example1\obj\Release\SharpGLExample.csprojResolveAssemblyReference.cache
+E:\GIT\OpenGLGame\Example1\obj\Release\Example1.GameWindow.resources
+E:\GIT\OpenGLGame\Example1\obj\Release\Example1.Menu.resources
+E:\GIT\OpenGLGame\Example1\obj\Release\Example1.Properties.Resources.resources
+E:\GIT\OpenGLGame\Example1\obj\Release\SharpGLExample.csproj.GenerateResource.Cache
+E:\GIT\OpenGLGame\Example1\obj\Release\Example1.exe
+E:\GIT\OpenGLGame\Example1\obj\Release\Example1.pdb

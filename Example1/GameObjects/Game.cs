@@ -209,7 +209,7 @@ namespace Example1.GameObjects
                         gl.Vertex(level.parts[j].blocks[i].collider.frontViewCoords[2, 0], level.parts[j].blocks[i].collider.frontViewCoords[2, 1], level.parts[j].blocks[i].collider.bottomViewCoords[2, 2]);
                         gl.Vertex(level.parts[j].blocks[i].collider.frontViewCoords[3, 0], level.parts[j].blocks[i].collider.frontViewCoords[3, 1], level.parts[j].blocks[i].collider.frontViewCoords[3, 2]);
 
-                        gl.End();
+
                         gl.End();
                         gl.Color(1, 1, 1);
                     }
@@ -219,9 +219,58 @@ namespace Example1.GameObjects
                         gl.Translate(level.parts[j].blocks[i].collider.leftViewCoords[0, 0], level.parts[j].blocks[i].collider.topViewCoords[0, 1], 0);
                         level.parts[j].blocks[i].model.DisplayModel(gl);
                         gl.PopMatrix();
+                        gl.Color(1, 1, 1);
+
                     }
                 }
             }
+        }
+
+        public void Draw2DUI(OpenGL gl)
+        {
+            gl.LoadIdentity();
+            gl.Translate(-1.78, 0.95f, -2.5);
+            gl.Scale(0.25, 0.25, 1);
+
+            gl.Disable(OpenGL.DEPTH_TEST);
+            gl.Disable(OpenGL.TEXTURE_2D);
+
+            gl.Color(0, 0, 0);
+            gl.Begin(OpenGL.LINE_LOOP);
+            gl.Vertex(-0.0f, 0.01f);
+            gl.Vertex(-0.0f, -1.01f);
+            gl.Vertex(1.01f + this.life - 1, -1.01f);
+            gl.Vertex(1.01f + this.life - 1, 0.01f);
+            gl.End();
+
+            
+            for (int i = 0; i < this.life; i++)
+            {
+                if (this.life >= 3)
+                    gl.Color(0.0f, 1.0f, 0.0f);
+
+                if (this.life < 3)
+                    gl.Color(1.0f, 0.5f, 0.0f);
+
+                if (this.life == 1)
+                    gl.Color(1.0f, 0.0f, 0.0f);
+
+                gl.Begin(OpenGL.QUADS);
+                gl.Vertex(0.0f + i, 0.0f);
+                gl.Vertex(0.0f + i, -1.0f);
+                gl.Vertex(1.0f + i, -1.0f);
+                gl.Vertex(1.0f + i, 0.0f);
+                gl.End();
+
+                gl.Color(0, 0, 0);
+                gl.Begin(OpenGL.LINES);
+                gl.Vertex(0.0f + i, 0.0f);
+                gl.Vertex(0.0f + i, -1.0f);
+                gl.End();
+            }
+            
+            gl.End();
+            gl.Color(1.0f, 1.0f, 1.0f); 
         }
 
         public void DrawPlayer(OpenGL gl, Player player)
@@ -237,7 +286,21 @@ namespace Example1.GameObjects
             if (this.devMode)
                 player.DrawColliders(gl);
             else
-                player.modelStandard.DisplayModel(gl);
+            {
+                gl.Enable(OpenGL.TEXTURE_2D);
+                if (player.isJumping || !player.colliderYbottom)
+                {
+                    gl.BindTexture(OpenGL.TEXTURE_2D, player.modelTexture);
+                    player.modelJump.DisplayModel(gl);
+                } 
+                else
+                {
+                    gl.BindTexture(OpenGL.TEXTURE_2D, player.modelTexture);
+                    player.modelStandard.DisplayModel(gl);
+                }
+                gl.Disable(OpenGL.TEXTURE_2D);
+            }
+               
         }
 
         public void MovePlayer(OpenGL gl, Player player)

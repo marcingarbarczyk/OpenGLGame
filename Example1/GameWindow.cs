@@ -42,6 +42,8 @@ namespace Example1
 
             // Load models
             models[0] = game.LoadModel("assets/models/key.obj");
+            models[1] = game.LoadModel("assets/models/virus01_Idle.obj");
+            models[2] = game.LoadModel("assets/models/virus01_Jump.obj");
 
             // Camera settings
             game.camera = new GameObjects.Camera();
@@ -65,7 +67,10 @@ namespace Example1
             player.speed = 0.1f;
             player.jumpMax = 1.5f;
             player.weight = 0.5f;
-            player.modelStandard = models[0];
+            player.modelStandard = models[1];
+            player.modelJump = models[2];
+            player.modelTexture = 2;
+
 
 
             // Level 0 settings
@@ -219,7 +224,7 @@ namespace Example1
                 BasicGameSettings();
                 gl.GenTextures(255, game.tex);
                 game.LoadTexture("assets/textures/wall.jpg", 0);
-
+                game.LoadTexture("assets/textures/pacholek.jpg", 1);
                 init = false;
             }
 
@@ -251,16 +256,14 @@ namespace Example1
                 playerX.Text = player.x.ToString();
                 playerY.Text = player.y.ToString();
             }
+
+            
+            game.Draw2DUI(gl);
         }
 
         private void Game_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
-        }
-
-        private void GameWindow_Load(object sender, EventArgs e)
-        {
-
         }
 
         #region Keyboard evenets
@@ -327,5 +330,10 @@ namespace Example1
 
         }
         #endregion
+
+        private void GameWindow_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -25,6 +25,9 @@ namespace Example1.GameObjects
         public bool colliderZ { get; set; }
 
         public Model modelStandard { get; set; }
+        public Model modelJump { get; set; }
+
+        public uint modelTexture { get; set; }
 
         public void DrawColliders(OpenGL gl)
         {

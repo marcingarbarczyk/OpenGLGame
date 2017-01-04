@@ -21,7 +21,8 @@ namespace Example1.GameObjects
                     gl.Begin(OpenGL.TRIANGLES);
                 if (face.Count == 4)
                     gl.Begin(OpenGL.QUADS);
-                //gl.Begin(OpenGL.LINE_LOOP);
+
+                gl.Begin(OpenGL.LINE_LOOP);
 
                 foreach (ModelCoords.Vertex v in face)
                 {
