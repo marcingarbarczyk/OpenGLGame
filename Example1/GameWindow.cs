@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 
 using SharpGL;
+using System.Media;
 
 namespace Example1
 {
@@ -20,7 +21,6 @@ namespace Example1
         #region Init game
 
         bool init = true;
-        List<GameObjects.Block> blocks = new List<GameObjects.Block>();
 
         GameObjects.Model[] models = new GameObjects.Model[200];
         GameObjects.Level[] levels = new GameObjects.Level[20];
@@ -28,190 +28,36 @@ namespace Example1
         GameObjects.Player player = new GameObjects.Player();
 
 
+        private void BasicInit(GameObjects.Game game, OpenGL gl)
+        {
+            game.level = 0;
+            game.labelPoints = lblPoints;
+            game.labelLevel = lblLevel;
+            game.LoadTexturesAndModels(gl, models);
+            game.epsilon = 0.01f;
+            game.points = 0;
+            game.life = 3;
+            game.ShowPoints();
 
-        private void BasicGameSettings()
+            game.LoadLevels(levels, models);
+        }
+        
+
+        private void BasicLevelSettings(OpenGL gl)
         {
             // Main game settings
-            game.ctrl = this.openGLControl1;
-            game.epsilon = 0.01f;
-            game.checkpoint = new float[] { 0, 0 };
-            game.renderDistance = 8f;
-            game.render = 0;
-            game.life = 3;
 
-
-            // Load models
-            models[0] = game.LoadModel("assets/models/key.obj");
-            models[1] = game.LoadModel("assets/models/virus01_Idle.obj");
-            models[2] = game.LoadModel("assets/models/virus01_Jump.obj");
-
-            // Camera settings
-            game.camera = new GameObjects.Camera();
-            game.camera.eyeX = 0;
-            game.camera.eyeY = 2;
-            game.camera.eyeZ = 15;
-            game.camera.centerX = 0;
-            game.camera.centerY = 0;
-            game.camera.centerZ = 0;
-            game.camera.upX = 0;
-            game.camera.upY = 1;
-            game.camera.upZ = 0;
-
-            // Player settings
-            player.sizeX = 1;
-            player.sizeY = 1;
-            player.sizeZ = 1;
-            player.x = 0.0f;
-            player.y = 0.0f;
-            player.z = 0;
-            player.speed = 0.1f;
-            player.jumpMax = 1.5f;
-            player.weight = 0.5f;
-            player.modelStandard = models[1];
-            player.modelJump = models[2];
-            player.modelTexture = 2;
-
-
-
-            // Level 0 settings
-            levels[0] = new GameObjects.Level();
-            levels[0].parts[0].blocks.Add(new GameObjects.Block
+            if (levels[game.level] != null)
             {
-                textureID = 1,
-                model = models[0],
-                collider = new GameObjects.Collider
-                {
-                    leftViewCoords = new float[,]
-                    {
-                        {0, -1, 0},
-                        {0, -1, 2},
-                        {0, 0, 2},
-                        {0, 0, 0}
-                    },
-                    rightViewCoords = new float[,]
-                    {
-                        {4, -1, 0},
-                        {4, -1, 2},
-                        {4, 0, 2},
-                        {4, 0, 0}
-                    },
-                    topViewCoords = new float[,]
-                    {
-                        {0, 0, 0},
-                        {0, 0, 2},
-                        {4, 0, 2},
-                        {4, 0, 0}
-                    },
-                    bottomViewCoords = new float[,]
-                    {
-                        {0, -1, 0},
-                        {0, -1, 2},
-                        {4, -1, 2},
-                        {4, -1, 0}
-                    },
-                    frontViewCoords = new float[,]
-                    {
-                        {0, -1, 2},
-                        {0, 0, 2},
-                        {4, 0, 2},
-                        {4, -1, 2}
-                    }
-                }
-            });
-
-            levels[0].parts[0].blocks.Add(new GameObjects.Block
-            {
-                textureID = 1,
-                model = models[0],
-                collider = new GameObjects.Collider
-                {
-                    leftViewCoords = new float[,]
-                    {
-                        {6, -1, 0},
-                        {6, -1, 2},
-                        {6, 0, 2},
-                        {6, 0, 0}
-                    },
-                    rightViewCoords = new float[,]
-                    {
-                        {10, -1, 0},
-                        {10, -1, 2},
-                        {10, 0, 2},
-                        {10, 0, 0}
-                    },
-                    topViewCoords = new float[,]
-                    {
-                        {6, 0, 0},
-                        {6, 0, 2},
-                        {10, 0, 2},
-                        {10, 0, 0}
-                    },
-                    bottomViewCoords = new float[,]
-                    {
-                        {6, -1, 0},
-                        {6, -1, 2},
-                        {10, -1, 2},
-                        {10, -1, 0}
-                    },
-                    frontViewCoords = new float[,]
-                    {
-                        {6, -1, 2},
-                        {6, 0, 2},
-                        {10, 0, 2},
-                        {10, -1, 2}
-                    }
-                }
-
-            });
-
-            levels[0].parts[1].blocks.Add(new GameObjects.Block
-            {
-                textureID = 1,
-                model = models[0],
-                collider = new GameObjects.Collider
-                {
-                    leftViewCoords = new float[,]
-                    {
-                        {12, -1, 0},
-                        {12, -1, 2},
-                        {12, 0, 2},
-                        {12, 0, 0}
-                    },
-                    rightViewCoords = new float[,]
-                    {
-                        {16, -1, 0},
-                        {16, -1, 2},
-                        {16, 0, 2},
-                        {16, 0, 0}
-                    },
-                    topViewCoords = new float[,]
-                    {
-                        {12, 0, 0},
-                        {12, 0, 2},
-                        {16, 0, 2},
-                        {16, 0, 0}
-                    },
-                    bottomViewCoords = new float[,]
-                    {
-                        {12, -1, 0},
-                        {12, -1, 2},
-                        {16, -1, 2},
-                        {16, -1, 0}
-                    },
-                    frontViewCoords = new float[,]
-                    {
-                        {12, -1, 2},
-                        {12, 0, 2},
-                        {16, 0, 2},
-                        {16, -1, 2}
-                    }
-                }
-
-            });
+                game.checkpoint = new float[] { 0, 0 };
+                game.render = 0;
+                game.BasicGameSettings(player, models);
+                game.PlayLevelMusic(gl, levels[game.level]);
+                game.ChangeLevelText();
+            }
         }
 
         #endregion
-
         private void openGLControl1_OpenGLDraw(object sender, PaintEventArgs e)
         {
             SharpGL.OpenGL gl = this.openGLControl1.OpenGL;
@@ -219,46 +65,85 @@ namespace Example1
             gl.LoadIdentity();
             gl.Enable(OpenGL.DEPTH_TEST);
 
+            // Init game basic settings
             if(init)
             {
-                BasicGameSettings();
-                gl.GenTextures(255, game.tex);
-                game.LoadTexture("assets/textures/wall.jpg", 0);
-                game.LoadTexture("assets/textures/pacholek.jpg", 1);
+                BasicInit(game, gl);
+                BasicLevelSettings(gl);
                 init = false;
             }
 
-            // Do all operation before draw (check collider, moving objects, create enemies etc)
+            // Check end game
             if (game.life == 0)
             {
                 this.Hide();
+                End end = new Example1.End();
+                end.points = game.points;
+                end.endText = "Przegrana! Utracono wszystkie ¿ycia!";
+                end.victory = false;
+                end.Show();
             }
-
-            game.CheckDistance(player);
-            game.CheckCollider(gl, player, levels[0], game.render);
-            game.MovePlayer(gl, player);
-            
-            
-
-            
-
-            gl.LookAt(game.camera.eyeX, game.camera.eyeY, game.camera.eyeZ, game.camera.centerX, game.camera.centerY, game.camera.centerZ, game.camera.upX, game.camera.upY, game.camera.upZ);
-            if (game.devMode)
-                game.DrawHelpfulLines(gl);
-            game.DrawBackground(gl);
-            gl.PushMatrix();
-            game.DrawPlayer(gl, player);
-            gl.PopMatrix();
-            game.DrawBlocks(gl, levels[0], game.render);
-
-            if(game.devMode)
+            if (game.CheckEndLevel(player, levels[game.level]))
             {
-                playerX.Text = player.x.ToString();
-                playerY.Text = player.y.ToString();
+                game.level++;
+                if (game.level <= game.levelMax - 1)
+                    BasicLevelSettings(gl);
+                else
+                {
+                    game.level = 0;
+                    this.Hide();
+                    End end = new Example1.End();
+                    end.points = game.points;
+                    end.victory = true;
+                    end.endText = "Gratulacje! Ukoñczy³eœ grê!";
+                    end.Show();
+                }
             }
+            else
+            {
 
-            
-            game.Draw2DUI(gl);
+                // Check colliders, checkpoints etc.
+                game.HideLevelMessage();
+                game.CheckDistance(player);
+                game.CheckCollider(gl, player, levels[game.level], game.render);
+                game.CheckEnemiesCollider(gl, levels[game.level], game.render);
+                game.CheckEnemyAttack(gl, levels[game.level], player, game.render);
+                game.CheckMedkitGetting(gl, player, levels[game.level], game.render);
+                game.CheckPointGetting(gl, player, levels[game.level], game.render);
+                if (player.bullets.Count > 0)
+                {
+                    game.CheckBulletsCollider(gl, player, levels[game.level], game.render);
+                    game.CheckEnemyBulletHit(gl, player, levels[game.level], game.render);
+                }
+                game.CheckCheckpoints(gl, player, levels[game.level]);
+
+                // Move objects
+                game.MovePlayer(gl, player);
+                game.MoveEnemy(gl, levels[game.level], game.render);
+                if(player.bullets.Count > 0)
+                    game.MoveBullets(gl, player);
+
+                // Draw scene
+                gl.LookAt(game.camera.eyeX, game.camera.eyeY, game.camera.eyeZ, game.camera.centerX, game.camera.centerY, game.camera.centerZ, game.camera.upX, game.camera.upY, game.camera.upZ);
+                game.DrawHelpfulLines(gl);
+                game.DrawBackground(gl, levels[game.level]);
+                game.DrawPlayer(gl, player);
+                game.DrawBullets(gl, player.bullets);
+                game.DrawEnemies1(gl, levels[game.level], game.render);
+                game.DrawMedkits(gl, levels[game.level], game.render);
+                game.DrawPoints(gl, levels[game.level], game.render);
+                game.DrawElements(gl, levels[game.level], game.render);
+
+
+                if (game.devMode)
+                {
+                    playerX.Text = player.x.ToString();
+                    playerY.Text = player.y.ToString();
+                }
+
+                // Draw UI
+                game.Draw2DUI(gl);
+            }
         }
 
         private void Game_FormClosing(object sender, FormClosingEventArgs e)
@@ -269,21 +154,45 @@ namespace Example1
         #region Keyboard evenets
         private void openGLControl1_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.A)
+            if (e.KeyCode == Keys.A)
                 if (!player.colliderXleft)
+                {
+                    if(!player.isWalking)
+                        player.walkTime = DateTime.Now.TimeOfDay;
+
                     game.left = true;
+                    player.isWalking = true;
+                }
 
             if (e.KeyCode == Keys.D)
-                if(!player.colliderXright)
-                    game.right = true;
+                if (!player.colliderXright)
+                {
+                    if (!player.isWalking)
+                        player.walkTime = DateTime.Now.TimeOfDay;
 
-            if (e.KeyCode == Keys.Space)
+                    game.right = true;
+                    player.isWalking = true;
+                }
+
+            if (e.KeyCode == Keys.W)
             {
                 if (!player.isJumping && player.colliderYbottom )
                 {
+                    if (player.jumpSound != "none")
+                    {
+                        var playerwmp = new WMPLib.WindowsMediaPlayer();
+                        playerwmp.URL = player.jumpSound;
+                        playerwmp.controls.play();
+                    }
                     player.isJumping = true;
                     player.jumpingLimit = player.y + player.jumpMax;
                 }
+            }
+
+            if (e.KeyCode == Keys.Space)
+            {
+                player.Shot();
+                player.isFiring = true;
             }
 
             if (e.KeyCode == Keys.L)
@@ -323,17 +232,27 @@ namespace Example1
         private void openGLControl1_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.A)
+            {
                 game.left = false;
+                player.isWalking = false;
+            }
 
             if (e.KeyCode == Keys.D)
+            {
                 game.right = false;
+                player.isWalking = false;
+            }
+
+            if (e.KeyCode == Keys.Space)
+                player.isFiring = false;
 
         }
         #endregion
 
         private void GameWindow_Load(object sender, EventArgs e)
         {
-
+            lblLevel.Visible = false;
+            lblPoints.Visible = false;
         }
     }
 }

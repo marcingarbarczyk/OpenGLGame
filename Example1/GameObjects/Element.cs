@@ -5,9 +5,8 @@ using System.Text;
 
 namespace Example1.GameObjects
 {
-    class Element
+    class Element : Object
     {
-        public bool isCollider { get; set; }
-        public double[,] coords { get; set; }
+
     }
 }

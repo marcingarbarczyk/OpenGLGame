@@ -26,38 +26,11 @@ namespace Example1.GameObjects
 
         public Model modelStandard { get; set; }
         public Model modelJump { get; set; }
+        public Model modelFire { get; set; }
+        public Model[] modelWalk { get; set; }
+        public TimeSpan walkTime { get; set; }
+        public bool isWalking = false;
 
         public uint modelTexture { get; set; }
-
-        public void DrawColliders(OpenGL gl)
-        {
-            gl.Begin(OpenGL.QUADS);
-            gl.Color(1.0, 1.0, 0.0);
-            gl.Vertex(0, 0, 0);
-            gl.Vertex(sizeX, 0, 0);
-            gl.Vertex(sizeX, 0, sizeZ);
-            gl.Vertex(0, 0, sizeZ);
-
-            gl.Vertex(0, sizeY, 0);
-            gl.Vertex(sizeX, sizeY, 0);
-            gl.Vertex(sizeX, sizeY, sizeZ);
-            gl.Vertex(0, sizeY, sizeZ);
-
-            gl.Vertex(0, 0, 0);
-            gl.Vertex(0, 0, sizeZ);
-            gl.Vertex(0, 1, sizeZ);
-            gl.Vertex(0, sizeY, 0);
-
-            gl.Vertex(sizeX, 0, 0);
-            gl.Vertex(sizeX, 0, sizeZ);
-            gl.Vertex(sizeX, sizeY, sizeZ);
-            gl.Vertex(sizeX, sizeY, 0);
-
-            gl.Vertex(0, 0, sizeZ);
-            gl.Vertex(sizeX, 0, sizeZ);
-            gl.Vertex(sizeX, 1, sizeZ);
-            gl.Vertex(0, 1, sizeZ);
-            gl.End();
-        }
     }
 }

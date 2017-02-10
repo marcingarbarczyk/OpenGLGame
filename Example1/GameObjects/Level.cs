@@ -8,6 +8,16 @@ namespace Example1.GameObjects
     class Level
     {
         public Part[] parts { get; set; }
+        public float backgroundX { get; set; }
+        public float backgroundY { get; set; }
+        public float backgroundZ { get; set; }
+        public float backgroundSizeX { get; set; }
+        public float backgroundSizeY { get; set; }
+        public float backgroundSizeZ { get; set; }
+        public float end { get; set; }
+        public uint textureID { get; set; }
+        public string music { get; set; }
+        public List<float[]> checkpoints = new List<float[]>();
 
         public Level()
         {

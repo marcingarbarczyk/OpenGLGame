@@ -28,73 +28,88 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.mainMenuBg = new System.Windows.Forms.PictureBox();
+            this.imgbtnNewGame = new System.Windows.Forms.PictureBox();
+            this.imgbtnAuthors = new System.Windows.Forms.PictureBox();
+            this.imgbtnExit = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.mainMenuBg)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgbtnNewGame)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgbtnAuthors)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgbtnExit)).BeginInit();
             this.SuspendLayout();
             // 
-            // button1
+            // mainMenuBg
             // 
-            this.button1.Location = new System.Drawing.Point(84, 55);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(371, 50);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Nowa gra";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.mainMenuBg.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainMenuBg.Location = new System.Drawing.Point(0, 0);
+            this.mainMenuBg.Name = "mainMenuBg";
+            this.mainMenuBg.Size = new System.Drawing.Size(1403, 698);
+            this.mainMenuBg.TabIndex = 4;
+            this.mainMenuBg.TabStop = false;
+            this.mainMenuBg.Click += new System.EventHandler(this.mainMenuBg_Click);
             // 
-            // button2
+            // imgbtnNewGame
             // 
-            this.button2.Location = new System.Drawing.Point(84, 228);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(371, 53);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Autorzy";
-            this.button2.UseVisualStyleBackColor = true;
+            this.imgbtnNewGame.Location = new System.Drawing.Point(503, 168);
+            this.imgbtnNewGame.Name = "imgbtnNewGame";
+            this.imgbtnNewGame.Size = new System.Drawing.Size(451, 130);
+            this.imgbtnNewGame.TabIndex = 5;
+            this.imgbtnNewGame.TabStop = false;
+            this.imgbtnNewGame.Click += new System.EventHandler(this.imgbtnNewGame_Click);
+            this.imgbtnNewGame.MouseLeave += new System.EventHandler(this.imgbtnNewGame_MouseLeave);
+            this.imgbtnNewGame.MouseHover += new System.EventHandler(this.imgbtnNewGame_MouseHover);
             // 
-            // button3
+            // imgbtnAuthors
             // 
-            this.button3.Location = new System.Drawing.Point(84, 320);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(371, 63);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Wyjście";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.imgbtnAuthors.Location = new System.Drawing.Point(503, 314);
+            this.imgbtnAuthors.Name = "imgbtnAuthors";
+            this.imgbtnAuthors.Size = new System.Drawing.Size(451, 130);
+            this.imgbtnAuthors.TabIndex = 6;
+            this.imgbtnAuthors.TabStop = false;
+            this.imgbtnAuthors.Click += new System.EventHandler(this.imgbtnAuthors_Click);
+            this.imgbtnAuthors.MouseLeave += new System.EventHandler(this.imgbtnAuthors_MouseLeave);
+            this.imgbtnAuthors.MouseHover += new System.EventHandler(this.imgbtnAuthors_MouseHover);
             // 
-            // button4
+            // imgbtnExit
             // 
-            this.button4.Location = new System.Drawing.Point(84, 144);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(371, 50);
-            this.button4.TabIndex = 3;
-            this.button4.Text = "Najlepsi gracze";
-            this.button4.UseVisualStyleBackColor = true;
+            this.imgbtnExit.Location = new System.Drawing.Point(505, 462);
+            this.imgbtnExit.Name = "imgbtnExit";
+            this.imgbtnExit.Size = new System.Drawing.Size(451, 130);
+            this.imgbtnExit.TabIndex = 7;
+            this.imgbtnExit.TabStop = false;
+            this.imgbtnExit.Click += new System.EventHandler(this.imgbtnExit_Click);
+            this.imgbtnExit.MouseLeave += new System.EventHandler(this.imgbtnExit_MouseLeave);
+            this.imgbtnExit.MouseHover += new System.EventHandler(this.imgbtnExit_MouseHover);
             // 
             // Menu
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(580, 448);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.ClientSize = new System.Drawing.Size(1403, 698);
+            this.Controls.Add(this.imgbtnExit);
+            this.Controls.Add(this.imgbtnAuthors);
+            this.Controls.Add(this.imgbtnNewGame);
+            this.Controls.Add(this.mainMenuBg);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "Menu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Menu";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Menu_FormClosing);
+            this.Load += new System.EventHandler(this.Menu_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.mainMenuBg)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgbtnNewGame)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgbtnAuthors)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgbtnExit)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.PictureBox mainMenuBg;
+        private System.Windows.Forms.PictureBox imgbtnNewGame;
+        private System.Windows.Forms.PictureBox imgbtnAuthors;
+        private System.Windows.Forms.PictureBox imgbtnExit;
     }
 }
