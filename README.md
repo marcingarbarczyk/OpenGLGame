@@ -5,6 +5,3 @@ I would like to thank:
 - The coauthors of the project: Marta Stachowiak and Mateusz Musielak
 - Społeczna Akademia Nauk
 - http://www.playonloop.com/ for background music.
-
-You can download only game here (with new SharpGL version too, but I can not promise that it will work properly):
-http://dev.mgarbarczyk.pl/pacholekadventure/game.zip
